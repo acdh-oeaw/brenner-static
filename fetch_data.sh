@@ -10,5 +10,8 @@ mv ./brenner-data-main/data/ .
 rm main.zip
 rm -rf ./brenner-data-main
 
+echo "flattening data/edtitions/BR-*/*.xml into data/editions/*.xml"
+python pyscripts/organize.py
+
 echo "fetch imprint"
 ./shellscripts/dl_imprint.sh
