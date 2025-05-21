@@ -11,7 +11,6 @@
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
-    <xsl:import href="./partials/aot-options.xsl"/>
     <xsl:import href="./partials/blockquote.xsl"/>
 
     <xsl:variable name="prev">
@@ -29,6 +28,9 @@
     <xsl:variable name="doc_title">
         <xsl:value-of select=".//tei:titleStmt/tei:title[1]/text()"/>
     </xsl:variable>
+    <xsl:variable name="facs-url">
+        <xsl:value-of select="replace(replace($teiSource, '.xml', ''), 'BR-', '')"/>
+    </xsl:variable>
 
 
     <xsl:template match="/">
@@ -37,11 +39,6 @@
                 <xsl:call-template name="html_head">
                     <xsl:with-param name="html_title" select="$doc_title"></xsl:with-param>
                 </xsl:call-template>
-                <style>
-                    .navBarNavDropdown ul li:nth-child(2) {
-                        display: none !important;
-                    }
-                </style>
             </head>
             <body class="d-flex flex-column h-100">
                 <xsl:call-template name="nav_bar"/>
@@ -84,39 +81,23 @@
                                     </a>
                                 </xsl:if>
                             </div>
-                            <div id="editor-widget">
-                                <xsl:call-template name="annotation-options"></xsl:call-template>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div style="width: 100%; height: 800px" id="osd_viewer"/>
+                                <figcaption class="figure-caption text-center">Der Brenner, <xsl:value-of select="$doc_title"/></figcaption>
+                            </div>
+                            <div class="col">
+                                <xsl:apply-templates select=".//tei:body"/>
                             </div>
                         </div>
-                        <xsl:apply-templates select=".//tei:body"></xsl:apply-templates>
-                        <p style="text-align:center;">
-                            <xsl:for-each select=".//tei:note[not(./tei:p)]">
-                                <div class="footnotes" id="{local:makeId(.)}">
-                                    <xsl:element name="a">
-                                        <xsl:attribute name="name">
-                                            <xsl:text>fn</xsl:text>
-                                            <xsl:number level="any" format="1" count="tei:note"/>
-                                        </xsl:attribute>
-                                        <a>
-                                            <xsl:attribute name="href">
-                                                <xsl:text>#fna_</xsl:text>
-                                                <xsl:number level="any" format="1" count="tei:note"/>
-                                            </xsl:attribute>
-                                            <span style="font-size:7pt;vertical-align:super; margin-right: 0.4em">
-                                                <xsl:number level="any" format="1" count="tei:note"/>
-                                            </span>
-                                        </a>
-                                    </xsl:element>
-                                    <xsl:apply-templates/>
-                                </div>
-                            </xsl:for-each>
-                        </p>
 
                         <div class="text-center p-4">
                             <xsl:call-template name="blockquote">
                                 <xsl:with-param name="pageId" select="$link"/>
                             </xsl:call-template>
                         </div>
+                        <span id="url" class="visually-hidden" aria-hidden="true">https://brenner.oeaw.ac.at/php/getPage.php?keyString=<xsl:value-of select="$facs-url"/>&amp;type=img</span>
 
                     </div>
                     <xsl:for-each select="//tei:back">
@@ -126,9 +107,8 @@
                     </xsl:for-each>
                 </main>
                 <xsl:call-template name="html_footer"/>
-                <script src="vendor/openseadragon-bin-4.1.1/openseadragon.min.js"/>
-                <script src="vendor/de-micro-editor-0.4.0/de-editor.min.js"></script>
-                <script type="text/javascript" src="js/run.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/openseadragon.min.js"/>
+                <script src="js/facs.js"/>
             </body>
         </html>
     </xsl:template>
