@@ -1,3 +1,57 @@
+:root {
+  --dse-base-color: #a5130c;
+  --dse-base-hover: #ff0404a8;
+  --dse-background: #d6d8bb;
+  --dse-background-dark: #a2ad8f;
+}
+
+a {
+  color: var(--dse-base-color);
+}
+a:hover {
+  color: var(--dse-base-hover);
+}
+
+/* main {
+  background-color: var(--dse-background);
+} */
+
+nav {
+  font-size: 1.2rem;
+  background-color: var(--dse-background-dark);
+}
+
+footer {
+  background-color: var(--dse-background-dark);
+}
+
+
+
+
+.btn-primary {
+  --bs-btn-bg: var(--dse-base-color);
+  --bs-btn-border-color: var(--dse-base-color);
+  --bs-btn-hover-bg: var(--dse-base-hover);
+  --bs-btn-hover-border-color: var(--dse-base-color);
+  --bs-btn-active-bg: var(--dse-base-color);
+  --bs-btn-active-border-color: var(--dse-base-color);
+  --bs-btn-border-color: var(--dse-base-color);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--dse-base-color);
+  --bs-btn-border-color: var(--dse-base-color);
+  --bs-btn-hover-bg: var(--dse-base-hover);
+  --bs-btn-hover-border-color: var(--dse-base-color);
+  --bs-btn-active-bg: var(--dse-base-color);
+  --bs-btn-active-border-color: var(--dse-base-color);
+  --bs-btn-border-color: var(--dse-base-color);
+}
+
+
+
+
+
 /* needed for interactive map in listplace.xsl */
 div#map {
     height: 50vh;

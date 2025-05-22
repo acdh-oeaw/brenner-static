@@ -8,7 +8,7 @@
         <xsl:param name="customUrl" select="$base_url"></xsl:param>
         <xsl:variable name="fullUrl" select="concat($customUrl, $pageId)"/>
         <div>
-            <h2 class="fs-4">How to cite</h2>
+            <h2 class="fs-4">Zitierempfehlung</h2>
             <blockquote class="blockquote">
                 <p>
                     <xsl:value-of select="$project_title"/>, herausgegeben von <span>Hanna</span> und Ronja, LaLe 2025 (<a href="{$fullUrl}"><xsl:value-of select="$fullUrl"/></a>)
