@@ -17,7 +17,7 @@
                     <div class="col-lg-4 col-md-3 col-sm-3">
                         <div>
                             <p>
-                                ACDH-CH
+                                <a href="https://www.oeaw.ac.at/acdh/">ACDH-CH</a>
                                 <br />
                                     Austrian Centre for Digital Humanities and Cultural Heritage
                                     <br />
