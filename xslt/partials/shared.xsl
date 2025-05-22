@@ -25,6 +25,8 @@
     <xsl:template match="tei:milestone[@unit='asterisk']">
         <div class="text-center"> * </div>
     </xsl:template>
+    
+    <xsl:template match="tei:milestone[@unit='3dots']">...</xsl:template>
 
     <xsl:template match="tei:list[@type='unordered']">
         <xsl:choose>
@@ -41,6 +43,16 @@
                 <li><xsl:apply-templates/></li>
             </xsl:when>
         </xsl:choose>
+    </xsl:template>
+    
+    <xsl:template match="tei:w">
+        <span id="{./@xml:id}" class="w"><xsl:apply-templates/></span>
+    </xsl:template>
+    
+    <xsl:template match="tei:fw">
+        <div class="tei-fw">
+            <xsl:apply-templates/>
+        </div>
     </xsl:template>
 
     <xsl:template match="tei:hi">
@@ -99,6 +111,10 @@
 
     <xsl:template match="tei:listOrg">
         <xsl:apply-templates/>
+    </xsl:template>
+    
+    <xsl:template match="tei:div//tei:title">
+        <div class="tei-title"><xsl:apply-templates/></div>
     </xsl:template>
    
 </xsl:stylesheet>

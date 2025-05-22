@@ -28,6 +28,15 @@
     <xsl:variable name="doc_title">
         <xsl:value-of select=".//tei:titleStmt/tei:title[1]/text()"/>
     </xsl:variable>
+    <xsl:variable name="volumeWritten" select=".//tei:biblScope[@unit='volume']/text()"/>
+    <xsl:variable name="volume" select=".//tei:biblScope[@unit='volume']/@n"/>
+    <xsl:variable name="issueWritten" select=".//tei:biblScope[@unit='issue']/text()"/>
+    <xsl:variable name="issue" select=".//tei:biblScope[@unit='issue']/@n"/>
+    <xsl:variable name="pageWritten" select=".//tei:biblScope[@unit='page']/text()"/>
+    <xsl:variable name="page" select=".//tei:biblScope[@unit='page']/@n"/>
+
+    <xsl:variable name="volumeUrl" select="'BR-'||$volume||'-01-01_n0001.html'"/>
+    <xsl:variable name="issueUrl" select="'BR-'||$volume||$issue||'-01_n0001.html'"/>
     <xsl:variable name="facs-url">
         <xsl:value-of select="replace(replace($teiSource, '.xml', ''), 'BR-', '')"/>
     </xsl:variable>
@@ -38,12 +47,25 @@
         <html class="h-100" lang="{$default_lang}">
             <head>
                 <xsl:call-template name="html_head">
-                    <xsl:with-param name="html_title" select="$doc_title"></xsl:with-param>
+                    <xsl:with-param name="html_title" select="'Der Brenner: '||$doc_title"></xsl:with-param>
                 </xsl:call-template>
             </head>
             <body class="d-flex flex-column h-100">
                 <xsl:call-template name="nav_bar"/>
                 <main class="flex-shrink-0 flex-grow-1">
+                    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="ps-5 p-3">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="index.html"><xsl:value-of select="$project_short_title"/></a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{$volumeUrl}"><xsl:value-of select="$volumeWritten"/></a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="#"><xsl:value-of select="$issueWritten"/></a>
+                            </li>
+                        </ol>
+                    </nav>
                     <div class="container">
                         <div class="row">
                             <div class="col-md-2 col-lg-2 col-sm-12 text-start">
@@ -84,14 +106,14 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">
-                                <div style="width: 100%; height: 800px" id="osd_viewer"/>
+                            <div class="col-md-7">
+                                <div id="osd_viewer"/>
                                 <figcaption class="figure-caption text-center">Der Brenner, <xsl:value-of select="$doc_title"/></figcaption>
                                 <div class="text-center">
                                     <a href="{$brenner-url||$facs-url||'&amp;type=xml'}">original XML</a> | <a href="{$brenner-url||$facs-url||'&amp;type=html'}">original HTML</a>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col-md-5">
                                 <xsl:apply-templates select=".//tei:body"/>
                             </div>
                         </div>
