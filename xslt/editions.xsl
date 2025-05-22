@@ -30,13 +30,37 @@
     </xsl:variable>
     <xsl:variable name="volumeWritten" select=".//tei:biblScope[@unit='volume']/text()"/>
     <xsl:variable name="volume" select=".//tei:biblScope[@unit='volume']/@n"/>
+    <xsl:variable name="halbbandWritten" select=".//tei:biblScope[@unit='halbband']/text()"/>
+    <xsl:variable name="halbband" select=".//tei:biblScope[@unit='halbband']/@n"/>
+    <xsl:variable name="firstHalbband">
+        <xsl:choose>
+            <xsl:when test=".//tei:biblScope[@unit='halbband']/text()">
+                <xsl:value-of select="'01'"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="'00'"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
     <xsl:variable name="issueWritten" select=".//tei:biblScope[@unit='issue']/text()"/>
+    <xsl:variable name="firstIssue">
+        <xsl:choose>
+            <xsl:when test=".//tei:biblScope[@unit='issue']/text()">
+                <xsl:value-of select="'01'"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="'00'"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
     <xsl:variable name="issue" select=".//tei:biblScope[@unit='issue']/@n"/>
     <xsl:variable name="pageWritten" select=".//tei:biblScope[@unit='page']/text()"/>
     <xsl:variable name="page" select=".//tei:biblScope[@unit='page']/@n"/>
 
-    <xsl:variable name="volumeUrl" select="'BR-'||$volume||'-01-01_n0001.html'"/>
-    <xsl:variable name="issueUrl" select="'BR-'||$volume||$issue||'-01_n0001.html'"/>
+    <xsl:variable name="volumeUrl" select="'BR-'||$volume||'-'||$firstHalbband||'-'||$firstIssue||'_a0001.html'"/>
+    <xsl:variable name="issueUrl" select="'BR-'||$volume||'-'||$halbband||'-'||$issue||'_a0001.html'"/>
+    
+    
     <xsl:variable name="facs-url">
         <xsl:value-of select="replace(replace($teiSource, '.xml', ''), 'BR-', '')"/>
     </xsl:variable>
@@ -61,9 +85,16 @@
                             <li class="breadcrumb-item">
                                 <a href="{$volumeUrl}"><xsl:value-of select="$volumeWritten"/></a>
                             </li>
-                            <li class="breadcrumb-item">
-                                <a href="#"><xsl:value-of select="$issueWritten"/></a>
-                            </li>
+                            <xsl:if test="$halbbandWritten">
+                                <li class="breadcrumb-item">
+                                    <a href="{$issueUrl}"><xsl:value-of select="$halbbandWritten"/></a>
+                                </li>
+                            </xsl:if>
+                            <xsl:if test="$issueWritten">
+                                <li class="breadcrumb-item">
+                                    <a href="{$issueUrl}"><xsl:value-of select="$issueWritten"/></a>
+                                </li>
+                            </xsl:if>
                         </ol>
                     </nav>
                     <div class="container">
