@@ -45,8 +45,22 @@
         </span>
     </xsl:template>
 
-    <xsl:template match="tei:ref">
-        <a href="{@target}"><xsl:apply-templates/></a>
+    <xsl:template match="tei:ref[@target]">
+        <a>
+            <xsl:choose>
+                <xsl:when test="contains(./@target, '.xml')">
+                    <xsl:attribute name="href">
+                        <xsl:value-of select="replace(./@target, '.xml', '.html')"/>
+                    </xsl:attribute>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:attribute name="href">
+                        <xsl:value-of select="./@target"/>
+                    </xsl:attribute>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:apply-templates/>
+        </a>
     </xsl:template>
     <xsl:template match="tei:lg">
         <p><xsl:apply-templates/></p>

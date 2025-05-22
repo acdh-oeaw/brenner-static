@@ -11,7 +11,7 @@
             <h2 class="fs-4">Zitierempfehlung</h2>
             <blockquote class="blockquote">
                 <p>
-                    <xsl:value-of select="$project_title"/>, herausgegeben von <span>Hanna</span> und Ronja, LaLe 2025 (<a href="{$fullUrl}"><xsl:value-of select="$fullUrl"/></a>)
+                    <xsl:value-of select="$project_title"/>, herausgegeben vom Austrian Centre for Digital Humanities and Cultural Heritage, Wien 2025 (<a href="{$fullUrl}"><xsl:value-of select="$fullUrl"/></a>)
                 </p>
             </blockquote>
         </div>
