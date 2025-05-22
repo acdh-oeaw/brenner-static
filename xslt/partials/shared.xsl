@@ -21,6 +21,10 @@
     <xsl:template match="tei:milestone[@unit='asterism']">
         <div class="text-center"> * * * </div>
     </xsl:template>
+    
+    <xsl:template match="tei:milestone[@unit='asterisk']">
+        <div class="text-center"> * </div>
+    </xsl:template>
 
     <xsl:template match="tei:list[@type='unordered']">
         <xsl:choose>

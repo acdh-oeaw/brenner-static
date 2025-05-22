@@ -31,6 +31,7 @@
     <xsl:variable name="facs-url">
         <xsl:value-of select="replace(replace($teiSource, '.xml', ''), 'BR-', '')"/>
     </xsl:variable>
+    <xsl:variable name="brenner-url" select="'https://brenner.oeaw.ac.at/php/getPage.php?keyString='"/>
 
 
     <xsl:template match="/">
@@ -58,7 +59,7 @@
                                 </xsl:if>
                             </div>
                             <div class="col-md-8 col-lg-8 col-sm-12 text-center">
-                                <h1>
+                                <h1 class="text-center">
                                     <xsl:value-of select="$doc_title"/>
                                 </h1>
                                 <div>
@@ -86,6 +87,9 @@
                             <div class="col">
                                 <div style="width: 100%; height: 800px" id="osd_viewer"/>
                                 <figcaption class="figure-caption text-center">Der Brenner, <xsl:value-of select="$doc_title"/></figcaption>
+                                <div class="text-center">
+                                    <a href="{$brenner-url||$facs-url||'&amp;type=xml'}">original XML</a> | <a href="{$brenner-url||$facs-url||'&amp;type=html'}">original HTML</a>
+                                </div>
                             </div>
                             <div class="col">
                                 <xsl:apply-templates select=".//tei:body"/>
@@ -97,7 +101,7 @@
                                 <xsl:with-param name="pageId" select="$link"/>
                             </xsl:call-template>
                         </div>
-                        <span id="url" class="visually-hidden" aria-hidden="true">https://brenner.oeaw.ac.at/php/getPage.php?keyString=<xsl:value-of select="$facs-url"/>&amp;type=img</span>
+                        <span id="url" class="visually-hidden" aria-hidden="true"><xsl:value-of select="$brenner-url||$facs-url||'&amp;type=img'"/></span>
 
                     </div>
                     <xsl:for-each select="//tei:back">
