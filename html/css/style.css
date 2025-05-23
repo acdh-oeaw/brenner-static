@@ -84,3 +84,12 @@ div#osd_viewer  {
 	text-align: center;
 	font-size: 1.2rem;
 }
+
+.tei-p {
+  text-indent: 0.7em;
+  margin: 0.2em 0;
+}
+
+.no-intend {
+  margin: 0 0;
+}

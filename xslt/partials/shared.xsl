@@ -85,7 +85,14 @@
         <xsl:apply-templates/><br/>
     </xsl:template>
     <xsl:template match="tei:p">
-       <p><xsl:apply-templates/></p>
+        <xsl:choose>
+            <xsl:when test=".[@rend]">
+                <p class="{@rend}"><xsl:apply-templates/></p>
+            </xsl:when>
+            <xsl:otherwise>
+                <p class="tei-p"><xsl:apply-templates/></p>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
     <xsl:template match="tei:table">
