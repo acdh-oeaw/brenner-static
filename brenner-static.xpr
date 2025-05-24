@@ -10,6 +10,26 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
+                                    <String>data/imprint.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>toc</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
                                     <String>data/editions/BR-04-01-06_n0266.xml</String>
                                 </field>
                                 <field name="scenarioIds">
@@ -30,7 +50,7 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>data/editions/BR-01-01-01_n0023.xml</String>
+                                    <String>data/editions/BR-04-02-19_n0864.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -50,7 +70,7 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>data/editions/BR-04-02-19_n0864.xml</String>
+                                    <String>data/editions/BR-01-01-01_n0023.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -135,26 +155,6 @@
                                 <field name="scenarioIds">
                                     <list>
                                         <String>meta</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>data/imprint.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>index</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -812,7 +812,7 @@
                                     <Boolean>true</Boolean>
                                 </field>
                                 <field name="openInBrowser">
-                                    <Boolean>true</Boolean>
+                                    <Boolean>false</Boolean>
                                 </field>
                                 <field name="outputResource">
                                     <String>${pd}/html/toc.html</String>
